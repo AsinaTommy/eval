@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+
+  <div class="col-lg-6">
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Vertical Form</h5>
+
+        <!-- Vertical Form -->
+        <form class="row g-3 needs-validation" novalidate method="post" action="add_film">
+            <div class="col-12">
+                <label for="validationCustom01" class="form-label">Titre</label>
+                <input type="text" class="form-control" id="validationCustom01" name = "titre" required>
+                <div class="invalid-feedback">
+                  No no
+                </div>
+                <div class="valid-feedback">
+                    yaya
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="validationCustom02" class="form-label">Auteur</label>
+                <input type="text" class="form-control" id="validationCustom02" name="auteur" required>
+                <div class="invalid-feedback">
+                  No no
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="validationCustom03" class="form-label">Duree</label>
+                <input type="number" class="form-control" id="validationCustom03" name="duree" required>
+                <div class="invalid-feedback">
+                  No no
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="validationCustom04" class="form-label">Categorie</label>
+                <select class="form-select" id="validationCustom04" name="categorie" required>
+                  <option selected disabled value="">Choose...</option>
+                  {% for cate in data:%}
+                  <option value={{cate.idcategorie}}>{{cate.libelle}}</option>
+                  {%endfor%}
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid state.
+                </div>
+              </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </form><!-- Vertical Form -->
+
+      </div>
+    </div>  
+{% endblock %}  

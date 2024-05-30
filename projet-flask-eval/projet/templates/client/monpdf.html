@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devis</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    #container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    #entete {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    #entete h3 {
+        margin: 0;
+    }
+    #logo {
+        width: 100px;
+        height: auto;
+    }
+    #table {
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    #total {
+        float: right;
+    }
+    h2 {
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+    <div id="container">
+        <div id="entete">
+            <div>
+                <img id="logo" src="D:\eval\projet-flask-eval\logoooo.png" alt="Logo">
+                <h2> </h2>
+            </div>
+        </div>
+        <div id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Designation</th>
+                        <th>Quantite</th>
+                        <th>Unite</th>
+                        <th>Prix unitaire</th>
+                        <th>Valeur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dat in data %}
+                    <tr>
+                        <td>{{dat.libelle}}</td>
+                        <td>{{dat.quantite}}</td>
+                        <td>{{dat.unite}}</td>
+                        <td>{{dat.pu}}</td>
+                        <td>{{dat.valeur}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="total">
+                <h2>Total: {{somme}}</h2>
+            </div>
+        </div>
+        
+        <hr>
+        <div id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Date</th>
+                        <th>Montant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for datp in data2 %}
+                    <tr>
+                        <td>{{datp.reference}}</td>
+                        <td>{{datp.dateheure}}</td>
+                        <td>{{datp.montant}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="total">
+                <h2>Total: {{somme2}}</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

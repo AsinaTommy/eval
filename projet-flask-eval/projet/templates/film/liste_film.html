@@ -1,0 +1,105 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+
+        
+        <div class="col-xl-3">
+          <div class="card">
+            <div class="card-body"  style="display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 5%;">
+              <h6 style="font-weight: bold">Colonnes a afficher</h6>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck1">
+                <label class="form-check-label" for="gridCheck1">
+                  Example checkbox
+                </label>
+              </div>
+            </div>    
+          </div>    
+          
+          <div class="card">
+            <div class="card-body"  style="display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 5%;">
+              <h6 style="font-weight: bold">Trier par</h6>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                <label class="form-check-label" for="gridRadios1">
+                  First radio
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                <label class="form-check-label" for="gridRadios1">
+                  First radio
+                </label>
+              </div>
+            </div>    
+          </div>  
+
+        </div>
+
+
+        <div class="col-xl-9">
+
+          <div class="card">
+            <div class="card-body">
+                <div style="display:flex; align-items:center; justify-content: space-arround; gap:75%">
+                    <h5 class="card-title">All films</h5>
+                    <a href="create_film"><button type="button" class="btn btn-primary"><i class="bi bi-plus"></i> Add new</button></a>
+                </div>
+              <!-- Table with stripped rows -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Titre</th>
+                    <th>Categorie</th>
+                     <!--<th data-type="date" data-format="YYYY/DD/MM">Start Date</th> -->
+                    <th>Auteur</th>
+                    <th>Duree</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {%for film in data: %}
+                  <tr>
+                    <td>{{film.titre}}</td>
+                    <td>{{film.categorie}}</td>
+                    <td>{{film.auteur}}</td>
+                    <td>{{film.duree}}</td>
+                    <td>  
+                        <a href=""><i class="bi bi-pencil-square"></i> </a>
+                        <a href=""><i class="bi bi-trash"></i> </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+                  
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    {% endblock %}

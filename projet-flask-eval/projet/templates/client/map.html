@@ -1,0 +1,48 @@
+{% extends 'main/client.html' %}
+{% block body%}
+<div class="container-fluid">
+    <div class="page-title">
+      <div class="row">
+        <div id="map" style="height: 700px;"></div>
+      </div>
+    </div>
+</div>
+    <script>
+        var map = L.map('map').setView([-18.7669, 46.8691], 6); // Centrer la carte sur Madagascar
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Coordonnées des points délimitant le polygone autour de Madagascar
+        var polygonCoords = [
+            [-25.588, 44.537], // Sud-Ouest
+            [-25.55, 50.483],  // Nord-Ouest
+            [-12.217, 50.483], // Nord
+            [-12.217, 44.537]  // Nord-Est
+        ];
+
+        // Ajouter le polygone autour de Madagascar à la carte
+        var polygon = L.polygon(polygonCoords, {
+            color: 'blue',  // Couleur de la bordure
+            weight: 2,      // Épaisseur de la bordure
+            fillOpacity: 0  // Opacité de remplissage
+        }).addTo(map);
+
+        $.getJSON('/api/trails', function(data) {
+            L.geoJSON(data, {
+                style: function (feature) {
+                    return {color: 'red'};
+                }
+            }).addTo(map);
+        });
+    </script>
+
+{% endblock %}  
+
+{% block css %}
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+{% endblock %}
+
+{% block js %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+{% endblock %}

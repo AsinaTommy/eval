@@ -1,0 +1,59 @@
+
+{% extends 'main/admin.html' %}
+
+{% block body %}
+<div class="col-sm-10">
+    <div class="card">
+        <div class="card-block row">
+            <div class="col-sm-12 col-lg-12 col-xl-12">
+                <div class="table-responsive">
+                    <table class="table header-border table-responsive-sm mypagination" url="/getdevisad" nb="35">
+                      <thead>
+                        <tr>
+                            <th name="iddevis">Name</th>
+                            <th name="maison">Maison</th>
+                            <th name="finition">Finition</th>
+                            <th name="total">Total</th>
+                            <th name="paye">Payé</th>
+                            <th name="debut">Début</th>
+                            <th name="fin">Fin</th>
+                            <th name="reste">Reste à payer</th>
+                            <th name="pourcentage">Paiement effectue</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for i in data:%}
+                        <tr style="background-color: {{i.getColor()}}">
+                            <td name="iddevis">{{i.iddevis}}</td>
+                            <td name="maison">{{i.maison}}</td>
+                            <td name="finition">{{i.finition}}</td>
+                            <td name="total">{{i.total}}</td>
+                            <td name="paye">{{i.paye}}</td>
+                            <td name="debut">{{i.denut}}</td>
+                            <td name="fin">{{i.fin}}</td>
+                            <td name="reste">{{i.reste}}</td>
+                            <td name="pourcentage" >{{i.pourcentage()}}</td>
+                            <td value="iddevis">
+                              <a class="dropdown-item" href="/details-dev/{iddevis}">View details</a>
+                            </td>
+                        </tr>
+                        {% endfor%}
+                      </tbody>
+                    
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="float: right;">
+            <div class="btn-group mr-2 mb-2">
+                <button type="button" class="btn btn-outline-primary previous" onclick="moty()">previous</button>
+                <button type="button" class="btn btn-primary go" onclick ="mety()">go</button>
+                <button type="button" class="btn btn-outline-primary next" onclick="maty()">next</button>
+            </div>
+            <div class="btn-group mb-2">
+                <input type="number" class="form-control goinput" style="width: 50%;">
+            </div>
+        </div>  
+    </div>
+</div>
+{%endblock%}

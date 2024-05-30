@@ -1,0 +1,139 @@
+{% extends 'main/client.html' %}
+{% block body%}
+<div class="container-fluid">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-6">
+        <h3>Form Wizard</h3>
+      </div>
+      <div class="col-6">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+          <li class="breadcrumb-item">Form Layout</li>
+          <li class="breadcrumb-item active"> Form Wizard</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        
+        <div class="card-body">
+          <form class="form-wizard" id="regForm" action="add-devis" method="POST">
+              
+              <div class="tab">
+                  <h1>You can create a new devis here...</h1>
+                </div>
+
+
+              <div class="tab">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header pb-0"> 
+                            <h3>Choisis le type de maison</h3>
+                        </div>
+                        <div class="card-body pricing-content">
+                            <div class="row pricing-col">
+                              
+                              {% for m in maison:%}
+                              <div class="col-md-3 box-col-25">
+                                    <div class="pricing-block card text-center">
+                                        <div class="pricing-header">
+                                            <h2>{{m.libelle}}</h2>
+                                            <div class="price-box">
+                                                <div>
+                                                    <h3>{{m.duree}}</h3>
+                                                    <p>jours</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-list">                                     
+                                            <ul class="pricing-inner">
+                                              {% for i in m.descriptions%}
+                                              <li>
+                                                <h6><span>{{i}}</span></h6>
+                                              </li>
+                                            {% endfor %}
+                                            </ul>
+                                            <button class="btn btn-primary btn-lg" type="button" data-original-title="btn btn-primary btn-lg" title=""><input type="radio" name="maisonradio"  value={{m.id}}> Choisir</button>
+                                        </div>
+                                    </div>
+                              </div>
+                              {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+              <div class="tab">
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="card-header pb-0"> 
+                      <h3>Simple Pricing Card</h3>
+                    </div>
+                    <div class="card-body pricing-content">
+                      <div class="row">
+                       
+                       {% for f in finition: %}
+                        <div class="col-xl-3 col-sm-6 xl-25 box-col-3">
+                          <div class="card text-center pricing-simple">
+                            <div class="card-body">
+                              <h3>{{f.libelle}}</h3>
+                              <h1>{{f.augmentation}} %</h1>
+                              <h6 class="mb-0">...</h6>
+                            </div><a class="btn btn-lg btn-primary btn-block" href="javascript:void(0)">
+                              <h5 class="mb-0"><input type="radio" name="finitionradio" value={{f.id}}> Purchase</h5></a>
+                          </div>
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            <div class="tab">
+              <div class="mb-3 m-t-15">
+                <label for="exampleFormControlInput1">Date debut</label>
+                <input class="form-control" type="date" name="datedebut">
+              </div>
+              <div class="mb-3 m-t-15">
+                <label for="exampleFormControlInput1">Lieu </label>
+                <input class="form-control" type="text" name="lieu">
+              </div>
+            </div>
+
+
+
+            <div>
+              <div class="text-end btn-mb">
+                <button class="btn btn-secondary" id="prevBtn" type="button" onclick="nextPrev(-1)">Previous</button>
+                <button class="btn btn-primary" id="nextBtn" type="button" onclick="nextPrev(1)">Next</button>
+              </div>
+            </div>
+
+
+            <!-- Circles which indicates the steps of the form:-->
+            <div class="text-center"><span class="step"></span><span class="step"></span><span class="step"></span><span class="step"></span></div>
+            <!-- Circles which indicates the steps of the form:-->
+            <!-- Container-fluid Ends-->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}  

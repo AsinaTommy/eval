@@ -1,0 +1,43 @@
+{% extends 'main/admin.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="col-xl-4 col-lg-6 box-col-4">
+    <div class="card">
+      <div class="card-header pb-0">
+        <h3>Modifier travaux</h3> 
+      </div>
+      <div class="card-body">
+        <form class="theme-form row" method="post" action="/change-travaux/{{travaux.idtravaux}}">
+          <div class="mb-3 col-12">
+            <input class="form-control" type="text"name="libelle" value="{{travaux.libelle}}">
+          </div>
+          <div class="mb-3 col-12">
+            <input class="form-control" type="text" name="unite" value="{{travaux.unite}}">
+          </div>
+          <div class="mb-3 col-12">
+            <input class="form-control" type="number" name="pu" value={{travaux.pu}}>
+          </div>
+          <div class="mb-3 col-12">
+            <input class="form-control" type="text" name="code" value="{{travaux.code}}">
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary btn-block" type="submit" title="">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

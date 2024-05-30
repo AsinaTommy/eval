@@ -1,0 +1,183 @@
+{% extends 'main/admin.html' %}
+
+{% block body%}
+
+<div class="container-fluid">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-6">
+          <h3>Tableau de bord</h3>
+        </div>
+        <div class="col-6">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item">Pages</li>
+            <li class="breadcrumb-item active">Tableau de bord</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Container-fluid starts-->
+  <div class="container-fluid ecommerce-page">
+    <div class="row">      
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card sale-chart">
+          <div class="card-body"> 
+            <div class="d-flex">    
+              <div class="flex-shrink-0">          
+                <div class="sale-detail">
+                  <div class="icon"><i data-feather="shopping-bag"></i></div>
+                  <div class="sale-content">
+                    <h3>Total des devis</h3>
+                    <p>{{data[0].total}} ar</p>
+                  </div>
+                </div>
+              </div>
+              <div class="small-chart-view sales-chart" id="sales-chart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card sale-chart">
+          <div class="card-body">
+            <div class="d-flex">    
+              <div class="flex-shrink-0">         
+                <div class="sale-detail">
+                  <div class="icon"><i data-feather="dollar-sign"></i></div>
+                  <div class="sale-content">
+                    <h3>Total Paiement</h3>
+                    <p>{{data[0].paye}} ar</p>
+                  </div>
+                </div>
+              </div>
+              <div class="small-chart-view income-chart" id="income-chart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card sale-chart">
+          <div class="card-body">
+            <div class="d-flex">    
+              <div class="flex-shrink-0">                
+                <div class="sale-detail">
+                  <div class="icon"><i data-feather="file-text"></i></div>
+                  <div class="sale-content">
+                    <h3>Reste</h3>
+                    <p>{{data[0].reste}} ar</p>
+                  </div>
+                </div>
+              </div>
+              <div class="small-chart-view order-chart" id="order-chart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <div class="col-md-6">
+        <div class="card">
+          <div class="col">
+            <div class="mb-3">
+            <select class="form-select digits annee" id="exampleFormControlSelect9">
+                <option value="2020">2020</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+            </div>
+        </div>
+
+          
+          <div class="card-header pb-0">
+            <h3>Histogramme</h3>
+          </div>
+          <div class="card-body chart-block">
+            <div class="flot-chart-container">
+              <div class="flot-chart-placeholder" id="flot-categories"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+{% endblock %}  
+
+
+{%block js%}
+<script src="/static/js/chart/flot-chart/jquery.flot.js"></script>
+<script src="/static/js/chart/flot-chart/jquery.flot.categories.js"></script>
+<script src="/static/js/chart/flot-chart/flot-script.js"></script>
+<script src="/static/js/chart/flot-chart/jquery.flot.tooltip.min.js"></script>
+
+
+<script>
+  var selectElement = document.querySelector('.annee');
+
+// Ajout d'un écouteur d'événements "change" sur l'élément select
+selectElement.addEventListener('change', function(event) {
+    // Récupération de la valeur sélectionnée
+    var selectedValue = event.target.value;
+    getYearlyData(selectedValue)
+    
+});
+
+  function afficher(newData) {
+    // Vos données à tracer
+    console.log(newData)
+
+    newData = newData.map(function(item) {
+      return [item[0],item[1]];
+    });
+
+    $.plot("#flot-categories", [newData], {
+      series: {
+        bars: {
+          show: true,
+          barWidth: 0.6,
+          align: "center"
+        }
+      },
+      xaxis: {
+        mode: "categories",
+        tickLength: 0
+      },
+      tooltip: true, // Activer les tooltips
+      tooltipOpts: {
+        content: "%x: %y", // Format du contenu du tooltip (%x pour la catégorie, %y pour la valeur)
+        shifts: {
+          x: -30,
+          y: -50
+        }
+      }
+    });
+    
+  };
+
+
+
+
+  var getYearlyData = function(year) {
+    // Faire une requête AJAX pour obtenir les données correspondant à l'année
+    $.ajax({
+        url: '/get-histo/'+year,
+        type: 'GET',
+        dataType: 'json',
+        data: { year: year},
+        success: function(response) {
+          afficher(response);
+        },
+        error: function(error) {
+            console.error('Erreur lors de la récupération des données : ' + error);
+        }
+    });
+};
+getYearlyData(2024);
+</script>
+
+{% endblock%}

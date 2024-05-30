@@ -1,0 +1,75 @@
+{% extends 'main/client.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-6">
+          <h3>Payment Details</h3>
+        </div>
+        <div class="col-6">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">                                       <i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item">Ecommerce</li>
+            <li class="breadcrumb-item active">Payment Details</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="col-xl-4 col-lg-6 box-col-4">
+    <div class="card">
+      <div class="card-header pb-0">
+        <h3>Faire un paiement</h3>
+      </div>
+      <div class="card-body">
+        <form id="paiement">
+          <div class="mb-3 col-12">
+            <label class="d-block" for="montant">
+              <select class="form-select" size="1" name="iddevis">
+              {% for d in data: %}
+                <option value={{d.iddevis}}>{{d.iddevis}}</option>
+                {% endfor%}
+              </select>
+            </label>
+          </div>
+
+          <div class="mb-3 col-12">
+            <label class="d-block" for="montant">
+              <input class="form-control" type="number" name="montant">
+            </label>
+          </div>
+
+          <div class="mb-3 col-12">
+            <label class="d-block" for="date">
+              <input class="form-control" type="date" name="date">
+            </label>
+          </div>
+
+
+          <div class="mb-3 col-12">
+            <ul class="payment-opt">
+              <li><img src="static/images/ecommerce/mastercard.png" alt=""></li>
+              <li><img src="static/images/ecommerce/visa.png" alt=""></li>
+              <li><img src="static/images/ecommerce/paypal.png" alt=""></li>
+            </ul>
+          </div>
+          
+          <div class="col-12">
+            <input class="btn btn-primary btn-block" type="submit" value="Submit">
+          </div>     
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/js/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
+<script src="/static/js/submit.js" type="text/javascript"></script>
+
+{% endblock%}

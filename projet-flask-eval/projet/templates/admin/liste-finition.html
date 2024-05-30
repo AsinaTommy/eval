@@ -1,0 +1,59 @@
+{% extends 'main/admin.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-6">
+          <h3>Tasks</h3>
+        </div>
+        <div class="col-6">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+            <li class="breadcrumb-item">Apps</li>
+            <li class="breadcrumb-item active">Tasks</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+    <div class=row>
+        
+        <div class="col-sm-9">
+            <div class="card">
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table header-border table-responsive-sm "  nb="35">
+                              <thead>
+                                <tr>        
+                                    <th > libelle </th>
+                                    <th >augmentation</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for t in finition: %}
+                                <tr>
+                                    <td >{{t.libelle}}</td>
+                                    <td >{{t.augmentation}}</td>
+                                    <td>
+                                      <a class="dropdown-item" href="/update-finition/{{t.idfinition}}">Update</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+                            
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}  

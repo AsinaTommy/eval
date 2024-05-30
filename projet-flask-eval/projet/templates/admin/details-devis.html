@@ -1,0 +1,122 @@
+{% extends 'main/admin.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-6">
+        <h3>Invoice</h3>
+      </div>
+      <div class="col-6">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">                                       <i data-feather="home"></i></a></li>
+          <li class="breadcrumb-item">Ecommerce</li>
+          <li class="breadcrumb-item active">Invoice         </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container invoice">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">                            
+          <div>
+            <div>
+              <div class="row invo-header">
+                <div class="col-sm-6">
+                  <div class="d-flex">
+                    <div class="d-flex-left"><a href="index.html"><img class="d-flex-object img-60" src="{{ url_for('static', filename='images/logo/logo-icon.png')}}" alt=""></a></div>
+                    <div class="flex-grow-1 m-l-20">
+                      <h2 class="d-flex-heading f-w-600">Koho</h2>
+                      <p>hello@koho.in<br><span class="digits">289-335-6503</span></p>
+                    </div>
+                  </div>
+                  <!-- End Info-->
+                </div>
+                <div class="col-sm-6">
+                  <div class="text-md-end text-xs-center">
+                    <h3>Invoice #<span class="digits counter">1069</span></h3>
+                    <p>Issued: May<span class="digits"> 27, 2022</span><br>Payment Due: June <span class="digits">17, 2022</span></p>
+                  </div>
+                  <!-- End Title                                 -->
+                </div>
+              </div>
+            </div>
+            <!-- End InvoiceTop-->
+            <!-- End Invoice Mid-->
+            <div>
+              <div class="table-responsive invoice-table" id="table">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    
+                      <td class="item">
+                        <h4 class="p-2 mb-0">Designation</h4>
+                      </td>
+                      <td class="Rate">
+                        <h4 class="p-2 mb-0">Quantite</h4>
+                      </td>
+                      <td class="Hours">
+                        <h4 class="p-2 mb-0">Unite</h4>
+                      </td>
+                      <td class="Rate">
+                        <h4 class="p-2 mb-0">Prix unitaire</h4>
+                      </td>
+                      <td class="subtotal">
+                        <h4 class="p-2 mb-0">Sub-total</h4>
+                      </td>
+                    </tr>
+                    
+                  </thead>
+                  <tbody>
+
+                    {% for dat in data %}
+                    <tr>
+                      <td>
+                        <p class="m-0">{{dat.libelle}}</p>
+                      </td>
+                      <td>
+                        <p class="itemtext digits">{{dat.quantite}}</p>
+                      </td>
+                      <td>
+                        <p class="itemtext digits">{{dat.unite}}</p>
+                      </td>
+                      <td>
+                        <p class="itemtext digits">{{dat.pu}}</p>
+                      </td>
+                      <td>
+                        <p class="itemtext digits">{{dat.valeur}}</p>
+                      </td>
+                    </tr>
+
+                    {% endfor %}
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class="Rate">
+                        <h6 class="mb-0 p-2">Total</h6>
+                      </td>
+                      <td class="payment digits">
+                        <h6 class="mb-0 p-2">$1,644.25</h6>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- End Table-->
+            </div>
+            <!-- End InvoiceBot-->
+          </div>
+          
+          <!-- End Invoice-->
+          <!-- End Invoice Holder-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}  
