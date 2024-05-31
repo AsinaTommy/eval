@@ -25,3 +25,6 @@ def andrana():
 
 def liantso():
     print("liantsa aa")
+
+def eeehh():
+    print("Tomaa aaa")
