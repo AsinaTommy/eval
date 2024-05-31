@@ -22,3 +22,6 @@ def auth(*roles):
 
 def andrana():
     print("me")
+
+def liantso():
+    print("liantsa aa")
