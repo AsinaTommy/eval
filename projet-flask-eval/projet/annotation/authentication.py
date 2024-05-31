@@ -18,3 +18,7 @@ def auth(*roles):
                 return {'message':'Pleade connect'}, 401
         return wrapper
     return decorator
+
+
+def andrana():
+    print("me")
